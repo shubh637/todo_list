@@ -1,0 +1,36 @@
+<%- include("header") -%>
+
+<div  class="search" >
+<form action="/search" method="post">
+  <h1>ToDo list</h1>
+  <input id="a" type="text" name="search" placeholder="Search here/create List" style="margin-right: 0%;">
+  <button  id="A"type="submit" style="margin-left: 0%;" > <i class="bi bi-search"></i> Enter</button>
+</form>
+<form action="/list" method="post">
+  <button class="name" type="submit" style="margin-left: 0%;" >All lists</button>
+</form>
+</div>
+ 
+
+  <div class="box" id="heading">
+    <h1> <%= listTitle %> </h1>
+  </div>
+
+  <div class="box">
+    <% newListItems.forEach(function(newListItem){%>
+      <form action="/delete" method="post">
+      <div class="item">
+        <input type="checkbox" onchange="this.form.submit()" name="checkbox" value="<%=newListItem._id%>" >
+        <p><%=  newListItem.name  %></p>
+      </div>
+  <input type="hidden" name="listName" value="<%=listTitle%>">
+  </form>
+      <% }) %>
+
+      <form class="item" action="/" method="post">
+        <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
+        <button id="B" type="submit" name="list" value="<%=listTitle%>">+</button>
+      </form>
+  </div>
+
+<%- include("footer") -%>
